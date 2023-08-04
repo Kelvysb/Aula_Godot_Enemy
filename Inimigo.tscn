@@ -12,13 +12,14 @@ specular_mode = 2
 albedo_color = Color(1, 1, 0, 1)
 roughness = 0.0
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_at3kb"]
-height = 8.55792
-radius = 2.35358
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7rmvd"]
+points = PackedVector3Array(0, 0, 0, 10, 10, -20, 10, -10, -20, -10, 10, -20, -10, -10, -20)
 
 [sub_resource type="SphereMesh" id="SphereMesh_ibowl"]
 
 [node name="Inimigo" type="CharacterBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_z = true
 script = ExtResource("1_5vgov")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -35,8 +36,7 @@ debug_enabled = true
 [node name="Vision" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Vision"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -4.21773)
-shape = SubResource("CylinderShape3D_at3kb")
+shape = SubResource("ConvexPolygonShape3D_7rmvd")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.666271, 0, 0, 0, 0.666271, 0, 0, 0, 0.666271, 0, 0.641059, -0.363442)

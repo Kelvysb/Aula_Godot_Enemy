@@ -51,6 +51,8 @@ func getTarget()->Vector3:
 	return Vector3.ZERO
 	
 func FaceDirection(delta = 1):
+	if Vector3(velocity.x, 0, velocity.z) == Vector3.ZERO:
+		return
 	var originalRot = rotation.y
 	look_at(transform.origin + Vector3(velocity.x, 0, velocity.z))
 	rotation.y = lerp_angle(originalRot, rotation.y, delta * .5)

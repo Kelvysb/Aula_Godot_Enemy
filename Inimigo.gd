@@ -4,6 +4,7 @@ extends CharacterBody3D
 const SPEED = 2.0
 const JUMP_VELOCITY = 4.5
 @onready var navigation_agent_3d = $NavigationAgent3D as NavigationAgent3D
+@onready var space = get_viewport().world_3d.direct_space_state
 @onready var vision = $Vision
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -46,7 +47,13 @@ func getTarget()->Vector3:
 	
 	for body in bodies:
 		if body.is_in_group("player"):
-			return body.global_position
+			var query = PhysicsRayQueryParameters3D.create(global_transform.origin, body.global_transform.origin)
+			query.exclude = [self]
+			var cast = space.intersect_ray(query)
+			if cast:
+				var collider = cast.get("collider")
+				if collider == body:
+					return body.global_position
 
 	return Vector3.ZERO
 	

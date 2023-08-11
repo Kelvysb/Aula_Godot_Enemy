@@ -42,4 +42,7 @@ shape = SubResource("ConvexPolygonShape3D_7rmvd")
 transform = Transform3D(0.666271, 0, 0, 0, 0.666271, 0, 0, 0, 0.666271, 0, 0.641059, -0.363442)
 mesh = SubResource("SphereMesh_ibowl")
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

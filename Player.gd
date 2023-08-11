@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+class_name Player
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -7,6 +8,10 @@ const MOUSE_SENSITIVITY = 0.01
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+var maxHp: int = 10
+@onready var hp : int = maxHp 
+
 @onready var pivot = $Pivot
 @onready var camera = $Pivot/Camera3D
 
@@ -42,3 +47,8 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+func LevarDano(dano : int):
+	hp = hp - dano
+	if hp <= 0:
+		get_tree().quit()

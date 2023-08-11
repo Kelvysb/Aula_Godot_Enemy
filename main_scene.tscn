@@ -223,7 +223,7 @@ shape = SubResource("ConcavePolygonShape3D_f1qcl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.15696, 1.92, 5.26478)
 
 [node name="Plataforma" type="AnimatableBody3D" parent="."]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999999, 9.63932, 2.34535, 3.78435)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999999, 9.63937, 2.34536, 3.78437)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Plataforma"]
 transform = Transform3D(2.3168, 0, 0, 0, 0.22435, 0, 0, 0, 1.5153, 0, 0, 0)
@@ -238,7 +238,7 @@ shape = SubResource("BoxShape3D_g2xrc")
 curve = SubResource("Curve3D_i5vsx")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999999, 9.63932, 2.34535, 3.78435)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999999, 9.63937, 2.34536, 3.78437)
 progress = 10.9425
 rotation_mode = 0
 
@@ -251,3 +251,17 @@ reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_buvsn")
 }
+
+[node name="Waypoints" type="Node3D" parent="."]
+
+[node name="Alvo1" type="Node3D" parent="Waypoints" groups=["alvos"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9485, 0, -12.1994)
+
+[node name="Alvo2" type="Node3D" parent="Waypoints" groups=["alvos"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8462, 0, -21.3053)
+
+[node name="Alvo3" type="Node3D" parent="Waypoints" groups=["alvos"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8462, 0, 17.8926)
+
+[node name="Alvo4" type="Node3D" parent="Waypoints" groups=["alvos"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2237, 0, 17.8926)

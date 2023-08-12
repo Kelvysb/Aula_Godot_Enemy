@@ -22,7 +22,7 @@ func _physics_process(delta):
 	
 	var target = getTarget()
 	if target != Vector3.ZERO:
-		if target.distance_to(global_position) < 10:
+		if target.distance_to(global_position) < 2:
 			estado_atual = estado.Atacando
 		else:
 			estado_atual = estado.Seguindo
@@ -35,7 +35,7 @@ func _physics_process(delta):
 		estado.Seguindo :
 			ExecutarSeguindo(target)
 		estado.Atacando :
-			ExecutarAtacando()
+			ExecutarAtacando(target)
 
 	var next_path_position: Vector3 = navigation_agent_3d.get_next_path_position()
 	var current_agent_position: Vector3 = global_position
@@ -62,8 +62,9 @@ func ExecutarSeguindo(target : Vector3):
 	navigation_agent_3d.set_target_position(target)
 	
 	
-func ExecutarAtacando():
+func ExecutarAtacando(target : Vector3):
 	print_debug("Estado : Atacando")
+	navigation_agent_3d.set_target_position(target)
 	if timer.is_stopped():
 		timer.start()
 		

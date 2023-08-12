@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 const SPEED = 2.0
 const JUMP_VELOCITY = 4.5
+const PURSUIT_SPEED = 5.0
+@onready var velocidade = SPEED
 @onready var navigation_agent_3d = $NavigationAgent3D as NavigationAgent3D
 @onready var space = get_viewport().world_3d.direct_space_state
 @onready var vision = $Vision
@@ -39,7 +41,7 @@ func _physics_process(delta):
 
 	var next_path_position: Vector3 = navigation_agent_3d.get_next_path_position()
 	var current_agent_position: Vector3 = global_position
-	var new_velocity: Vector3 = (next_path_position - current_agent_position).normalized() * SPEED
+	var new_velocity: Vector3 = (next_path_position - current_agent_position).normalized() * velocidade
 	navigation_agent_3d.set_velocity(new_velocity.move_toward(new_velocity, .25))
 	
 	
@@ -52,12 +54,14 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func ExecutarAndando():
+	velocidade = SPEED	
 	print_debug("Estado : Andando")
 	if(navigation_agent_3d.is_navigation_finished()):
 		var target = get_tree().get_nodes_in_group("alvos").pick_random().global_position
 		navigation_agent_3d.set_target_position(target)
 	
 func ExecutarSeguindo(target : Vector3):
+	velocidade = PURSUIT_SPEED
 	print_debug("Estado : Segindo")
 	navigation_agent_3d.set_target_position(target)
 	

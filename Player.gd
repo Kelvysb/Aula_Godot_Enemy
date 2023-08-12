@@ -2,9 +2,12 @@ extends CharacterBody3D
 
 class_name Player
 
-const SPEED = 5.0
+const SPEED = 3.0
+
+
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENSITIVITY = 0.01
+
 
 @onready var vida = $Control/Vida
 
@@ -13,6 +16,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var maxHp: int = 10
 @onready var hp : int = maxHp 
+@onready var tela_dano = $Control/TelaDano
 
 @onready var pivot = $Pivot
 @onready var camera = $Pivot/Camera3D
@@ -56,3 +60,6 @@ func LevarDano(dano : int):
 	hp = hp - dano
 	if hp <= 0:
 		get_tree().quit()
+	var tween = get_tree().create_tween()
+	tela_dano.modulate = Color(1,0,0,0.8)
+	tween.tween_property(tela_dano, "modulate", Color(1,0,0,0), 0.5)
